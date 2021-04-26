@@ -1,0 +1,141 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Convertidor POCO</title>
+    @Styles.Render("~/model/css/base")
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-3">
+                <h3><i class="oi oi-transfer"></i> Generador de clases C#</h3>
+                <p>Crea un objeto a partir de un esquema de tabla de base de datos.</p>
+                <hr class="border-dark" />
+            </div>
+            <div class="col-6 row border-right border-dark">
+                <div class="col-12">
+                    <ul class="nav nav-pills mb-2">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="oi oi-wrench"></i>
+                                Opciones
+                            </a>
+                            <div class="dropdown-menu">
+                                <a id="menu_getset" class="dropdown-item" href="#">
+                                    <i class="oi oi-check d-none"></i> Añadir Get y Set
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a id="menu_clase" class="dropdown-item" href="#">
+                                    <i class="oi oi-check"></i> Ver como Clase
+                                </a>
+                                <a id="menu_struct" class="dropdown-item" href="#">
+                                    <i class="oi oi-check d-none"></i> Ver como Struct
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal_instrucciones">
+                                <i class="oi oi-info"></i>
+                                Instrucciones
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="generar" href="#">
+                                <i class="oi oi-paperclip"></i>
+                                Generar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" id="guardar" href="#">
+                                <i class="oi oi-cloud-download"></i>
+                                Guardar
+                            </a>
+                        </li>
+                    </ul>
+                    <textarea class="form-control" rows="10" style="resize:none;" id="textito"></textarea>
+                </div>
+                <div class="col-2 d-none">
+                    <div class="btn-group btn-group-vertical">
+                        <button class="btn btn-info mt-3 disabled" id="botoncito">Generar</button>
+                        <button class="btn btn-success mt-3 disabled" id="botoncito">Guardar</button>
+                    </div>
+                    <div class="list-group-vertical">
+                        <div class="list-group-item">
+                            <label class="checkbox">
+                                <input type="checkbox" id="allow_m" /> Algun ajuste
+                            </label>
+                        </div>
+                        <div class="list-group-item"></div>
+                        <div class="list-group-item"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <p class="border border-light p-1" id="salida">
+                    <em class="ml-3"> <i class="oi oi-document"></i> Si todo sale bien, un texto debería aparecer justo aqui</em>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center p-5" style="color:#eee;font-weight:bold;font-size:12px;user-select:none; opacity:.6;">
+                    <em>2021 &copy; Sartharian</em>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_instrucciones" class="modal fade">
+        <div class="modal-dialog mw-100 w-50" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="oi oi-info text-white"></i> Necesitas una manito, amiguito?
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-white">
+                    <p>Presta atención:</p>
+                    <ul class="ml-0">
+                        <li class="mt-2">
+                            Escribe o Pega el script T-SQL de creacion de tablas (CREATE TABLE) dentro del <b>cuadro de texto blanco</b> respetando el siguiente formato
+                            <p class="ml-1 p-2 mt-1 bg-white text-black-50">
+                                CREATE TABLE [esquema].[nombretabla] {<br />
+                                [nombrecolumna] [tipo] NULL o NOT NULL <br />
+                                Demases columnas... 
+                                }
+                            </p>
+                        </li>
+                        <li class="mt-2">Una vez escrito o pegado, revisa el <b>menú de opciones</b> y selecciona alguna característica que desees incluir en el resultado.</li>
+                        <li class="mt-2">El resultado mostrará según lo solicitado y posteriormente se puede descargar o simplemente copiar como texto.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastsito" class="toast fade bg-warning" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;left:25px;bottom:25px; color:black;">
+        <div class="toast-header bg-warning" style="color:black;">
+            <strong class="mr-auto"><i class="oi oi-bullhorn"></i> Psst!, por aquí!</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div id="msg_failure" class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
+
+</body>
+@Scripts.Render("~/model/js/base")
+@Scripts.Render("~/model/js/rutina")
+</html>
